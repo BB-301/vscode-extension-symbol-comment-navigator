@@ -4,7 +4,7 @@ A simple [VSCode](https://code.visualstudio.com/) extension that allows navigati
 
 ## A quick preview
 
-<div style="margin: 0 auto; width: 100%; max-width: 1200px;">
+<div>
     <img src="resources/a-quick-preview.gif" alt="Quick preview video (animated GIF)">
 </div>
 
@@ -12,11 +12,11 @@ A simple [VSCode](https://code.visualstudio.com/) extension that allows navigati
 
 This simple extension allows you to use line comments prefixed with a specific mark (e.g. `// MARK: My symbol name`) to turn that comment into a navigable symbol, which, as illustrated by [Figure 1](#figure-1) and [Figure 2](#figure-2), will then appear in the breadcrumbs section, in the document outline, as well as in the command pallette (when typing `@`).
 
-<div class="image-container" id="figure-1">
+<div id="figure-1">
     <img src="resources/breadcrumbs-and-outline.png" alt="Breadcrumbs and document outline">
     <p>Figure 1: Symbol comment in breadcrumbs and document outline.</p>
 </div>
-<div class="image-container" id="figure-2">
+<div id="figure-2">
     <img src="resources/command-palette.png" alt="Command palette symbol search">
     <p>Figure 2: Searching for a symbol comment using the command palette.</p>
 </div>
@@ -29,7 +29,7 @@ The extension also contributes the following (also shown in [Figure 3](#figure-3
 * `Go To Previous Mark`: Will move the cursor to the previous symbol comment, relative to the cursor's current position.
 * `Go To Next Mark`: Will move the cursor to the next symbol comment, relative to the cursor's current position.
 
-<div class="image-container" id="figure-3">
+<div id="figure-3">
     <img src="resources/commands.png" alt="Contributed commands">
     <p>Figure 3: Command palette showing contributed commands.</p>
 </div>
@@ -39,7 +39,7 @@ The extension also contributes the following (also shown in [Figure 3](#figure-3
 
 The `Go To Previous Mark` and `Go To Next Mark` commands listed [above](#commands) can also be triggered through "code actions" (see [Figure 4](#figure-4)). There is also a code action named `Edit Mark Label`, which will conveniently allow the user to edit the symbol name using an input box (not that directly modifying the comment inline is a difficult task, however).
 
-<div class="image-container" id="figure-4">
+<div id="figure-4">
     <img src="resources/code-actions.png" alt="Code actions">
     <p>Figure 4: Code actions associated with a symbol comment.</p>
 </div>
@@ -70,12 +70,12 @@ Technically, this extension can be used with any languages. The extension does c
 
 Support for a new language can be added by modifying either the **user** or the **workspace** settings, using the `symbolCommentNavigator.languages.custom` property, which latter corresponds to an array of items with the following properties: `languageId: string`, `lineComment: string`, and `closing?: string`. Note that the `closing` property is optional and should only be provided for languages that don't support "line comments" (e.g., HTML). [Figure 5](#figure-5) and [Figure 6](#figure-6) illustrate how to add support for both **Swift** and **HTML** (even though support for HTML is already provided by the extension). It should be noted that a custom language (i.e., a user-provided language) will override a native language when both use the same language ID.
 
-<div class="image-container" id="figure-5">
+<div id="figure-5">
     <img src="resources/add-language-1.png" alt="Code actions">
     <p>Figure 5: How to add support for a new language (main settings view)</p>
 </div>
 
-<div class="image-container" id="figure-6" class="image-container">
+<div id="figure-6" class="image-container">
     <img src="resources/add-language-2.png" alt="Code actions">
     <p>Figure 6: How to add support for a new language (JSON settings)</p>
 </div>
@@ -113,27 +113,3 @@ Copyright (c) 2024 BB-301 (fw3dg3@gmail.com)
 ### 0.1.0
 
 Initial release
-
-<style>
-    .image-container {
-        padding: 0;
-        margin: 20px auto 0 auto;
-        width: 100%;
-        max-width: 800px;
-        border: 1px solid;
-    }
-    .image-container img {
-        padding: 20px;
-        box-sizing: border-box;
-        margin: 0;
-    }
-    .image-container p {
-        text-align: center;
-        font-weight: bold;
-        padding: 20px;
-        box-sizing: border-box;
-        margin: 0;
-        line-height: 1;
-        border-top: 1px solid;
-    }
-</style>

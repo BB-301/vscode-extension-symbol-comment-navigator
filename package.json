@@ -22,7 +22,7 @@
         "symbol navigation",
         "vscode extension"
     ],
-    "icon": "resources/icon.png",
+    "icon": "icon.png",
     "galleryBanner.color": "#666666",
     "name": "symbol-comment-navigator",
     "displayName": "Symbol Comment Navigator",

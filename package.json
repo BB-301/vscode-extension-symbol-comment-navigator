@@ -1,0 +1,145 @@
+{
+    "license": "MIT with Commons Clause",
+    "pricing": "Free",
+    "publisher": "BB-301",
+    "author": {
+        "email": "fw3dg3@gmail.com",
+        "name": "BB-301",
+        "url": "https://github.com/BB-301"
+    },
+    "homepage": "https://github.com/BB-301/vscode-extension-symbol-comment-navigator",
+    "repository": {
+        "url": "https://github.com/BB-301/vscode-extension-symbol-comment-navigator",
+        "type": "git"
+    },
+    "bugs": {
+        "email": "fw3dg3@gmail.com",
+        "url": "https://github.com/BB-301/vscode-extension-symbol-comment-navigator/issues"
+    },
+    "keywords": [
+        "code navigation",
+        "comments navigation",
+        "symbol navigation",
+        "vscode extension"
+    ],
+    "icon": "resources/icon.png",
+    "galleryBanner.color": "#666666",
+    "name": "symbol-comment-navigator",
+    "displayName": "Symbol Comment Navigator",
+    "description": "A simple VSCode extension that allows navigating `marked` comments as if they were code symbols, similar to Xcode's `MARK:` comments.",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.insertSymbolComment",
+                "title": "Insert Mark",
+                "category": "Symbol Comment Navigator"
+            },
+            {
+                "command": "extension.moveToNextSymbolComment",
+                "title": "Go To Next Mark",
+                "category": "Symbol Comment Navigator"
+            },
+            {
+                "command": "extension.moveToPreviousSymbolComment",
+                "title": "Go To Previous Mark",
+                "category": "Symbol Comment Navigator"
+            }
+        ],
+        "configuration": {
+            "title": "Symbol Comment Navigator",
+            "properties": {
+                "symbolCommentNavigator.mark": {
+                    "type": "string",
+                    "default": "MARK",
+                    "markdownDescription": "The `mark` used to determine if the line comment is to be treated as a symbol (which allows for comment navigation). E.g. 'MARK' will be used as `// MARK: [your comment]` to navigate JavaScript code comments.",
+                    "scope": "resource",
+                    "minLength": 4,
+                    "maxLength": 50,
+                    "pattern": "^[A-Z_-]*$"
+                },
+                "symbolCommentNavigator.decorationsEnabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether the `marked` comment should be decorated for easier visual identification in the document.",
+                    "scope": "resource"
+                },
+                "symbolCommentNavigator.symbolLineNumbersEnabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "markdownDescription": "Whether to include the line number in the symbol's name.",
+                    "scope": "resource"
+                },
+                "symbolCommentNavigator.languages.disabled": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "minLength": 2,
+                        "maxLength": 20,
+                        "pattern": "^[a-z]*$"
+                    },
+                    "default": [],
+                    "markdownDescription": "A list of language IDs for which to disable symbol comments.",
+                    "scope": "resource"
+                },
+                "symbolCommentNavigator.languages.custom": {
+                    "type": "array",
+                    "markdownDescription": "A list of custom languages. Each item contains information about the language's ID, the language's line comment syntax, and, optionally, for a language without line comments, the language's closing comment syntax.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "languageId": {
+                                "type": "string",
+                                "minLength": 2,
+                                "maxLength": 20,
+                                "pattern": "^[a-z]*$",
+                                "markdownDescription": "Language ID (e.g., `golang`)"
+                            },
+                            "lineComment": {
+                                "type": "string",
+                                "default": "//",
+                                "markdownDescription": "The syntax of the language's line comment (e.g., `//`)"
+                            },
+                            "closing": {
+                                "type": "string",
+                                "default": "",
+                                "markdownDescription": "For languages that only have block comments (e.g., HTML), the syntax of the comment's closing side (e.g. `-->` for HTML, for which the `lineComment` property would be marked as `<!--`)."
+                            }
+                        }
+                    },
+                    "scope": "resource"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^6.15.0",
+        "@typescript-eslint/parser": "^6.15.0",
+        "eslint": "^8.56.0",
+        "typescript": "^5.3.3",
+        "@vscode/test-cli": "^0.0.4",
+        "@vscode/test-electron": "^2.3.8"
+    }
+}
